@@ -1,0 +1,9 @@
+python-socketio
+aiohttp
+autobahn
+websockets
+simple-websocket-server
+tqdm
+websocket
+pytz
+cards
