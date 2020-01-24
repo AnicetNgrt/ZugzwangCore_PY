@@ -62,8 +62,11 @@ def move_pawn_to(state:classes.GameState, owner_index:int, pawn_index:int, crd:T
   c, r = crd
   if state.board.mat[r][c].has_pawn: return False
   if not state.board.mat[r][c].walkable: return False
-  ic, ir = pawn.crd
-  state.board.mat[ir][ic].has_pawn = False
+  
+  if pawn.crd != None:
+    ic, ir = pawn.crd
+    state.board.mat[ir][ic].has_pawn = False
+
   pawn.crd = crd
   state.board.mat[r][c].has_pawn = True
   state.board.mat[r][c].pawn_index = pawn.pawn_index

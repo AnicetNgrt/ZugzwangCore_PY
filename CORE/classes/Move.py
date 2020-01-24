@@ -12,6 +12,7 @@ class Move:
   targets_index: List[int]
   plausible: bool
   final: GameState
+  ends_turn: bool
   
   def __init__(self, initial:GameState, maker_index:int, card_index:int, action_index:int, pawn_index:int, victim_index:int = None, targets_index:List[int] = []):
     self.initial = deepcopy(initial)
@@ -23,6 +24,7 @@ class Move:
     self.victim_index = victim_index
     self.targets_index = targets_index
     self.plausible = False
+    self.ends_turn = False
 
     if not 0 <= maker_index < len(self.initial.players): return
     maker = self.initial.players[maker_index]
@@ -72,7 +74,7 @@ class Move:
       new_maker.actions = self.final.rules["max actions"]
       for i in range(0, len(new_maker.hand)):
         new_maker.hand[i].turn_play_count = 0
-      
+      self.ends_turn = True
     else:
       new_card.turn_play_count += 1
     
